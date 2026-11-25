@@ -1,27 +1,89 @@
+:root {
+  --bg-a: #8bc6ec;
+  --bg-b: #9599e2;
+  --ink: #1b1d3a;
+  --green: #1fa971;
+  --red: #e5484d;
+  --blue: #3e63dd;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #8BC6EC;
-background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-height: 100vh;
-
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--bg-a), var(--bg-b));
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card {
+  width: min(92vw, 380px);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  background: rgb(255 255 255 / 0.55);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgb(255 255 255 / 0.7);
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgb(27 29 58 / 0.18);
 }
 
-h1{
-  margin: 20px !important;
-  font-weight: bold !important;
+h1 {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.6;
 }
 
-button{
-  margin: 20px !important;
-  border: 2px solid black !important
+.value {
+  display: block;
+  margin: 1rem 0 1.5rem;
+  font-size: clamp(4rem, 18vw, 6rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  animation: pop 0.18s ease-out;
+}
+.value.positive { color: var(--green); }
+.value.negative { color: var(--red); }
+
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0.4; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.actions { display: flex; gap: 0.75rem; justify-content: center; }
+
+.btn {
+  border: 0;
+  border-radius: 16px;
+  padding: 0.8rem 1.2rem;
+  min-width: 64px;
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.15s;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn:active { transform: scale(0.94); }
+.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.plus { background: var(--green); }
+.minus { background: var(--red); }
+.reset { background: var(--blue); font-size: 1rem; }
+
+.hint { margin: 1.5rem 0 0; font-size: 0.8rem; opacity: 0.6; }
+kbd {
+  padding: 0.1em 0.45em;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid #ccd;
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value { animation: none; }
 }
